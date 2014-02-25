@@ -39,8 +39,8 @@ typedef struct struct_edge
     node * ender;
 } edge;
 
-node * initialize_node();
-graph * initialize_graph(node * m_starter, node * m_ender, int size);
+node * initialize_node(int size_previous, int size_next);
+graph * initialize_graph(node * m_starter, node * m_ender, int size, int edge_count);
 edge * initialize_edge(node * m_node, node * m_node_child, int weight, int cost);
 
 void link_node(node * m_node, node * m_node_child, int weight, int cost);

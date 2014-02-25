@@ -19,13 +19,13 @@ int main(int argc, char const *argv[])
     /* code */
     // argc 1 = nombre de noeuds
 
-    node * m_node_start = initialize_node();
-    node * m_node_end = initialize_node();
+    node * m_node_start = initialize_node(0, 0);
+    node * m_node_end = initialize_node(0, 0);
     edge * m_edge = initialize_edge(m_node_start, m_node_end, 1, 2);
 
     printf("Poids : %d de %d et %d\n", m_edge->cost, m_edge->ender->level, m_node_start->level);
 
-    graph * m_graph = initialize_graph(m_node_start, m_node_end, 6);
+    graph * m_graph = initialize_graph(m_node_start, m_node_end, 6, 7);
 
     display_graph(m_graph);  
 
@@ -43,18 +43,20 @@ graph * initialize_graph(node * m_starter, node * m_ender, int size, int edge_co
     return m_graph;
 }
 
-node * initialize_node()
+node * initialize_node(int size_previous, int size_next)
 {
 	node * m_node = malloc(1 * sizeof(node));
+    m_node->size_next = size_next;
+    m_node->size_previous = size_previous;
+
 	m_node->view = 0;
-    m_node->size_next = 0;
-    m_node->size_previous = 0;
     m_node->current_previous = 0;
     m_node->current_next = 0;
     m_node->level = 0;
 
-    // m_node->previous_edges_array = malloc(size_previous * sizeof(edge));
-    // m_node->next_edges_array = malloc(size_next * sizeof(edge));
+
+    m_node->previous_edges_ind_array = malloc(size_previous * sizeof(int));
+    m_node->next_edges_ind_array = malloc(size_next * sizeof(int));
 
     return m_node;
 }
@@ -65,7 +67,7 @@ void link_node(node * m_node, node * m_node_child, int weight, int cost)
 	edge * new_edges_array = malloc(m_node->size_next + 1 * sizeof(edge));
 	m_node->size_next++;
 	//memcpy(new_edges_array, m_node->next_edges_array, sizeof(new_edges_array));
-	new_edges_array[m_node->size_next] = m_edge;
+	//new_edges_array[m_node->size_next] = m_edge;
 
 	// m_node->next_edges_array
 }
