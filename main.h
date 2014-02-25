@@ -13,18 +13,21 @@ typedef struct struct_graph
     node * starter;
     node * ender;
     node * nodes_array;
+    edge * edges_array;
 } graph;
 
 typedef struct struct_node
 {
-    int current_edge_previous;
-    int current_edges_next;
+    int view;
+    int current_previous;
+    int current_next;
     int size_next;
     int size_previous;
     int level;
-    // tableau d'arc
-    edge * previous_edges_array;
-    edge * next_edges_array;
+
+    // tableau des indices du edges_array
+    int * previous_edges_ind_array;
+    int * next_edges_ind_array;
 
 } node;
 
@@ -36,10 +39,10 @@ typedef struct struct_edge
     node * ender;
 } edge;
 
-void initialize_node(node * node);
-void initialize_graph(graph * m_graph, node * m_starter, node * m_ender, int size);
-void initialize_edge(edge * edge);
+node * initialize_node();
+graph * initialize_graph(node * m_starter, node * m_ender, int size);
+edge * initialize_edge(node * m_node, node * m_node_child, int weight, int cost);
 
-void add_node(node * node);
+void link_node(node * m_node, node * m_node_child, int weight, int cost);
 void display_graph(graph * graph);
 
