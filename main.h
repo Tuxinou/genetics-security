@@ -17,11 +17,14 @@ typedef struct struct_graph
 
 typedef struct struct_node
 {
+    int current_edge_previous;
+    int current_edges_next;
     int size_next;
     int size_previous;
     int level;
-    edge * previous_nodes_array;
-    edge * next_nodes_array;
+    // tableau d'arc
+    edge * previous_edges_array;
+    edge * next_edges_array;
 
 } node;
 
