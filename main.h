@@ -10,11 +10,9 @@ typedef struct struct_edge edge;
 typedef struct struct_graph
 {
     int size;
-    int size_edges;
-    int current_edge;
+    int edge_count;
     node * starter;
-    node * nodes_array;
-    edge * edges_array;
+    node * nodes_array[100];
 } graph;
 
 typedef struct struct_node
@@ -44,6 +42,7 @@ node * initialize_node(int size_previous, int size_next);
 graph * initialize_graph(node * m_starter, int size, int edge_count);
 edge * initialize_edge(node * m_node, node * m_node_child, int weight, int cost);
 
-void link_node(node * m_node, node * m_node_child, int weight, int cost);
+void link_node(edge * m_edge);
+void add_node(graph * m_graph, node * m_node);
 void display_graph(graph * graph);
 
